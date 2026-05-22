@@ -7,3 +7,17 @@ custom constraints, preferences, UI, and data import/export.
 See sample_data.json for expected data format.
 
 For a complete architecture walkthrough and extension guide, read ../SYSTEM_OVERVIEW.md.
+
+## Input Formats
+
+- JSON: Upload as-is.
+- YAML: Also supported (requires PyYAML, already listed in requirements).
+- Pasted text: In the Streamlit sidebar, paste JSON or YAML and it will be parsed and converted to the internal schema automatically.
+
+Normalization rules:
+- `subjects`, `teachers`, and `rooms` can be dicts keyed by names or lists of items. Lists of strings use sensible defaults; lists of objects require a `name` (or `id`) field.
+- Missing `days` or `periods_per_day` default to 5 and 6.
+- Missing `availability` defaults to all-available for all days/periods.
+- Missing `class_subjects` defaults each class to all subjects.
+
+Example YAML is provided at `timetable_solver/sample_input.yaml`.

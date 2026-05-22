@@ -1,8 +1,13 @@
 from pathlib import Path
 import json
 from typing import Dict, List
+import os
+from dotenv import load_dotenv
 
-DATA_FILE = Path(__file__).parent / 'sample_data.json'
+# Load environment variables
+load_dotenv()
+
+DATA_FILE = Path(__file__).parent / os.getenv('DATA_FILE', 'sample_data.json')
 
 
 def load_data(path: Path = DATA_FILE) -> Dict:

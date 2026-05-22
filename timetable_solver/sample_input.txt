@@ -1,0 +1,45 @@
+# Example text configuration (YAML in a .txt file)
+# You can upload this file or paste its content in the app sidebar.
+
+# Time grid
+days: 2
+periods_per_day: 3
+
+# Classes
+classes: [C1, C2]
+
+# Rooms (room types must match subjects' room_type)
+rooms:
+  R101: { type: standard }
+  Lab1: { type: lab }
+
+# Subjects
+subjects:
+  Math:
+    hours_per_week: 2
+    room_type: standard
+    is_heavy: false
+    is_double_period: false
+  Physics:
+    hours_per_week: 1
+    room_type: lab
+    is_heavy: false
+    is_double_period: false
+
+# Teachers
+teachers:
+  T1:
+    can_teach: [Math]
+    availability:
+      - [1,1,1]
+      - [1,1,1]
+  T2:
+    can_teach: [Physics]
+    availability:
+      - [1,1,1]
+      - [1,1,1]
+
+# Optional: restrict subjects per class (defaults to all subjects if omitted)
+class_subjects:
+  C1: [Math]
+  C2: [Physics]

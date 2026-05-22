@@ -1,0 +1,43 @@
+# Minimal sample config in YAML (also works as JSON)
+# Required keys: classes, subjects, teachers
+
+days: 5
+periods_per_day: 6
+
+classes:
+  - C1
+  - C2
+
+rooms:
+  Lab1: { type: lab }
+  R101: { type: standard }
+
+subjects:
+  Math:
+    hours_per_week: 5
+    room_type: standard
+    is_heavy: false
+    is_double_period: false
+  Physics:
+    hours_per_week: 3
+    room_type: lab
+    is_heavy: true
+    is_double_period: false
+
+teachers:
+  T1:
+    can_teach: [Math, Physics]
+    # Availability: 5 days x 6 periods (1=available, 0=not)
+    availability:
+      - [1,1,1,1,1,1]
+      - [1,1,1,1,1,1]
+      - [1,1,1,1,1,1]
+      - [1,1,1,1,1,1]
+      - [1,1,1,1,1,1]
+  T2:
+    can_teach: [Math]
+
+# Optional per-class subject restrictions (defaults to all subjects if omitted)
+class_subjects:
+  C1: [Math, Physics]
+  C2: [Math]

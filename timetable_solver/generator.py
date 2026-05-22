@@ -1,5 +1,10 @@
 import json
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 
 def extract_solution(data, x, solver):
@@ -23,7 +28,9 @@ def extract_solution(data, x, solver):
     return out
 
 
-def export_solution_json(data, x, solver, output_path: str = "solution.json"):
+def export_solution_json(data, x, solver, output_path: str = None):
+    if output_path is None:
+        output_path = os.getenv('SOLUTION_JSON', 'solution.json')
     classes = data['classes']
     days = data['days']
     P = data['periods_per_day']

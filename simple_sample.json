@@ -1,0 +1,97 @@
+{
+    "days": 5,
+    "periods_per_day": 6,
+    "classes": ["ClassA", "ClassB"],
+    "class_subjects": {
+        "ClassA": ["Math", "English", "Science"],
+        "ClassB": ["Math", "English", "Science"]
+    },
+    "subjects": {
+        "Math": {
+            "hours_per_week": 4,
+            "requires_special_room": false,
+            "room_type": "standard",
+            "is_double_period": false,
+            "is_indivisible": false,
+            "is_heavy": true
+        },
+        "English": {
+            "hours_per_week": 3,
+            "requires_special_room": false,
+            "room_type": "standard",
+            "is_double_period": false,
+            "is_indivisible": false,
+            "is_heavy": false
+        },
+        "Science": {
+            "hours_per_week": 3,
+            "requires_special_room": false,
+            "room_type": "standard",
+            "is_double_period": false,
+            "is_indivisible": false,
+            "is_heavy": true
+        }
+    },
+    "teachers": {
+        "Teacher1": {
+            "can_teach": ["Math"],
+            "availability": [
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1]
+            ]
+        },
+        "Teacher2": {
+            "can_teach": ["English"],
+            "availability": [
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1]
+            ]
+        },
+        "Teacher3": {
+            "can_teach": ["Science"],
+            "availability": [
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1]
+            ]
+        }
+    },
+    "rooms": {
+        "Room101": {
+            "type": "standard",
+            "capacity": 30
+        },
+        "Room102": {
+            "type": "standard",
+            "capacity": 30
+        }
+    },
+    "institution": {
+        "breaks": []
+    },
+    "solver_config": {
+        "max_time_seconds": 30,
+        "num_workers": 4,
+        "log_progress": true,
+        "random_seed": null
+    },
+    "weights": {
+        "teacher_unavailable": 10,
+        "teacher_idle_transition": 3,
+        "class_consecutive_overrun": 4,
+        "subject_spread_excess": 3,
+        "heavy_back_to_back": 2,
+        "teacher_early_late_imbalance": 2
+    },
+    "max_consecutive_periods": 3,
+    "early_periods": [0, 1],
+    "late_periods": [4, 5]
+}

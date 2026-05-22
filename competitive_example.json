@@ -1,0 +1,91 @@
+{
+  "days": 5,
+  "periods_per_day": 6,
+  "classes": ["10-A", "10-B", "10-C", "11-A", "11-B", "11-C", "12-A", "12-B", "12-C"],
+  "rooms": {
+    "CR101": {"type": "standard"},
+    "CR102": {"type": "standard"},
+    "CR103": {"type": "standard"},
+    "CR104": {"type": "standard"},
+    "CR105": {"type": "standard"},
+    "CR201": {"type": "standard"},
+    "CR202": {"type": "standard"},
+    "CR203": {"type": "standard"},
+    "CR204": {"type": "standard"},
+    "CR205": {"type": "standard"},
+    "CR301": {"type": "standard"},
+    "CR302": {"type": "standard"},
+    "CR303": {"type": "standard"},
+    "CR304": {"type": "standard"},
+    "CR305": {"type": "standard"},
+    "LabPhy1": {"type": "lab"},
+    "LabPhy2": {"type": "lab"},
+    "LabChem": {"type": "lab"},
+    "LabBio": {"type": "lab"},
+    "ComputerLab": {"type": "computer"},
+    "ArtStudio": {"type": "art"},
+    "MusicRoom": {"type": "music"}
+  },
+  "subjects": {
+    "English": {"hours_per_week": 3, "room_type": "standard", "is_heavy": true, "is_double_period": false},
+    "Mathematics": {"hours_per_week": 3, "room_type": "standard", "is_heavy": true, "is_double_period": false},
+    "Physics": {"hours_per_week": 2, "room_type": "lab", "is_heavy": false, "is_double_period": false},
+    "Chemistry": {"hours_per_week": 2, "room_type": "lab", "is_heavy": false, "is_double_period": false},
+    "Biology": {"hours_per_week": 2, "room_type": "lab", "is_heavy": false, "is_double_period": false},
+    "History": {"hours_per_week": 2, "room_type": "standard", "is_heavy": false, "is_double_period": false},
+    "Geography": {"hours_per_week": 2, "room_type": "standard", "is_heavy": false, "is_double_period": false},
+    "ComputerScience": {"hours_per_week": 2, "room_type": "computer", "is_heavy": false, "is_double_period": false},
+    "PhysicalEducation": {"hours_per_week": 2, "room_type": "standard", "is_heavy": false, "is_double_period": false}
+  },
+  "teachers": {
+    "T001": {"can_teach": ["English"], "availability": [[1,1,1,1,0,1], [1,1,1,1,1,1], [1,0,1,1,1,1], [1,1,1,1,1,1], [1,1,1,1,1,1]]},
+    "T002": {"can_teach": ["English"], "availability": [[1,1,1,1,1,1], [1,1,1,0,1,1], [1,1,1,1,1,1], [0,1,1,1,1,1], [1,1,1,1,1,1]]},
+    "T003": {"can_teach": ["Mathematics"], "availability": [[1,1,1,1,1,1], [1,1,1,1,0,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,0,1,1,1]]},
+    "T004": {"can_teach": ["Mathematics"], "availability": [[1,1,1,0,1,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [0,1,1,1,1,1]]},
+    "T005": {"can_teach": ["Physics"], "availability": [[1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,0,1,1,1], [1,1,1,1,1,1], [1,1,1,0,1,1]]},
+    "T006": {"can_teach": ["Physics"], "availability": [[1,1,1,1,0,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [1,0,1,1,1,1]]},
+    "T007": {"can_teach": ["Chemistry"], "availability": [[1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,1,0,1,1], [1,1,1,1,1,1], [1,1,1,1,1,1]]},
+    "T008": {"can_teach": ["Chemistry"], "availability": [[1,1,1,1,1,1], [1,1,0,1,1,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,1,1,0,1]]},
+    "T009": {"can_teach": ["Biology"], "availability": [[1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,1,0,1,1], [0,1,1,1,1,1]]},
+    "T010": {"can_teach": ["Biology"], "availability": [[1,1,1,1,0,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,0,1,1,1]]},
+    "T011": {"can_teach": ["History"], "availability": [[1,1,1,1,1,1], [1,1,1,1,1,1], [0,1,1,1,1,1], [1,1,1,1,1,1], [1,1,1,0,1,1]]},
+    "T012": {"can_teach": ["Geography"], "availability": [[1,1,1,1,1,1], [1,1,1,0,1,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [1,0,1,1,1,1]]},
+    "T013": {"can_teach": ["ComputerScience"], "availability": [[1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,1,1,0,1], [1,1,1,1,1,1], [1,1,1,1,1,1]]},
+    "T014": {"can_teach": ["ComputerScience"], "availability": [[1,1,1,1,0,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [0,1,1,1,1,1], [1,1,1,1,1,1]]},
+    "T015": {"can_teach": ["PhysicalEducation"], "availability": [[1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,0,1,1,1], [1,1,1,1,1,1], [1,1,1,0,1,1]]},
+    "T016": {"can_teach": ["PhysicalEducation"], "availability": [[1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [1,0,1,1,1,1], [1,1,1,1,1,1]]},
+    "T017": {"can_teach": ["Art"], "availability": [[1,1,1,1,1,1], [1,1,1,1,0,1], [1,1,1,1,1,1], [1,1,1,1,1,1], [0,1,1,1,1,1]]},
+    "T018": {"can_teach": ["Music"], "availability": [[1,1,1,1,1,1], [1,1,1,1,1,1], [1,1,1,0,1,1], [1,1,1,1,1,1], [1,1,1,1,1,1]]}
+  },
+  "class_subjects": {
+    "10-A": ["English", "Mathematics", "Physics", "Chemistry", "Biology", "History", "Geography", "ComputerScience", "PhysicalEducation"],
+    "10-B": ["English", "Mathematics", "Physics", "Chemistry", "Biology", "History", "Geography", "ComputerScience", "PhysicalEducation"],
+    "10-C": ["English", "Mathematics", "Physics", "Chemistry", "Biology", "History", "Geography", "ComputerScience", "PhysicalEducation"],
+    "11-A": ["English", "Mathematics", "Physics", "Chemistry", "Biology", "History", "Geography", "ComputerScience", "PhysicalEducation"],
+    "11-B": ["English", "Mathematics", "Physics", "Chemistry", "Biology", "History", "Geography", "ComputerScience", "PhysicalEducation"],
+    "11-C": ["English", "Mathematics", "Physics", "Chemistry", "Biology", "History", "Geography", "ComputerScience", "PhysicalEducation"],
+    "12-A": ["English", "Mathematics", "Physics", "Chemistry", "Biology", "History", "Geography", "ComputerScience", "PhysicalEducation"],
+    "12-B": ["English", "Mathematics", "Physics", "Chemistry", "Biology", "History", "Geography", "ComputerScience", "PhysicalEducation"],
+    "12-C": ["English", "Mathematics", "Physics", "Chemistry", "Biology", "History", "Geography", "ComputerScience", "PhysicalEducation"]
+  },
+  "institution": {
+    "breaks": []
+  },
+  "solver_config": {
+    "max_time_seconds": 120,
+    "num_workers": 16,
+    "log_progress": true,
+    "random_seed": null
+  },
+  "weights": {
+    "teacher_unavailable": 10,
+    "teacher_idle_transition": 3,
+    "class_consecutive_overrun": 4,
+    "subject_spread_excess": 3,
+    "heavy_back_to_back": 2,
+    "teacher_early_late_imbalance": 2
+  },
+  "max_consecutive_periods": 4,
+  "early_periods": [0, 1],
+  "late_periods": [4, 5]
+}

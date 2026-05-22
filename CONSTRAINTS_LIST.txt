@@ -1,0 +1,113 @@
+TIMETABLE MANAGER - CONSTRAINTS IMPLEMENTATION LIST
+=====================================================
+
+HARD CONSTRAINTS (Must be satisfied)
+====================================
+
+1. UNIQUE CLASS ASSIGNMENT (Per Time Slot)
+   - Each class can have at most ONE subject scheduled in each day-period slot
+   - This ensures a class is not scheduled for multiple subjects simultaneously
+
+2. UNIQUE TEACHER ASSIGNMENT (Per Time Slot)
+   - Each teacher can teach at most ONE subject/class in each day-period slot
+   - Prevents teachers from being double-booked
+
+3. UNIQUE ROOM ASSIGNMENT (Per Time Slot)
+   - Each room can host at most ONE class in each day-period slot
+   - Ensures rooms are not overbooked
+
+4. SUBJECT HOURS REQUIREMENT
+   - Each class must receive exactly the required number of hours per week for each subject
+   - Example: English must have exactly 3 hours per week for all classes
+
+5. TEACHER QUALIFICATION
+   - Only teachers qualified to teach a subject can be assigned to that subject
+   - Teachers can only teach subjects listed in their 'can_teach' array
+
+6. ROOM TYPE MATCHING
+   - Subjects can only be scheduled in rooms of the appropriate type
+   - Example: Physics must be in a 'lab' type room, not a standard classroom
+
+7. TEACHER AVAILABILITY
+   - Teachers cannot be scheduled during periods when they are unavailable
+   - Respects teacher availability arrays (1 = available, 0 = unavailable)
+
+8. INSTITUTIONAL BREAKS
+   - No classes can be scheduled during institutional breaks (if defined)
+   - Breaks can be recurring (all days) or on specific day-period combinations
+
+9. DOUBLE PERIOD ADJACENCY (For subjects requiring consecutive periods)
+   - If a subject is marked as 'is_double_period: true', the same class-teacher pair must teach the same subject in consecutive periods
+   - Ensures lab sessions and other double-period classes occur back-to-back
+
+
+SOFT CONSTRAINTS (Preferences - Minimized via penalties)
+=========================================================
+
+1. TEACHER IDLE TRANSITION PENALTY
+   - Weight: Configurable (default: 3)
+   - Minimizes gaps in teacher schedules when transitioning from idle to non-idle within a day
+   - Encourages teachers to have concentrated teaching blocks rather than scattered individual periods
+
+2. CLASS CONSECUTIVE PERIOD OVERRUN PENALTY
+   - Weight: Configurable (default: 4)
+   - Penalizes classes that exceed the maximum consecutive periods threshold
+   - Respects 'max_consecutive_periods' setting (default: 4 periods)
+   - Prevents student fatigue from back-to-back classes in the same subject
+
+3. SUBJECT SPREAD PENALTY
+   - Weight: Configurable (default: 3)
+   - Penalizes scheduling more than 1 period of the same subject per class per day
+   - Encourages spreading a subject's weekly hours across different days
+   - Example: Instead of 2 hours on Monday, prefer 1 hour on Monday and 1 hour on Tuesday
+
+4. HEAVY BACK-TO-BACK PENALTY
+   - Weight: Configurable (default: 2)
+   - Penalizes consecutive periods of subjects marked as 'is_heavy: true'
+   - Applies to subjects like English and Mathematics that are cognitively demanding
+   - Encourages alternating heavy subjects with other subjects to reduce student stress
+
+5. TEACHER EARLY-LATE IMBALANCE PENALTY
+   - Weight: Configurable (default: 2)
+   - Minimizes imbalance in teacher schedules between early and late periods
+   - 'early_periods': [0, 1] (first two periods)
+   - 'late_periods': [4, 5] (last two periods)
+   - Encourages fair distribution of teaching times across the school day
+
+6. TEACHER UNAVAILABILITY PENALTY
+   - Weight: Configurable (default: 10)
+   - High penalty for scheduling teachers outside availability windows (used in feasibility recovery)
+   - Note: Also implemented as a hard constraint to prevent infeasible solutions
+
+
+CONSTRAINT IMPLEMENTATION DETAILS
+==================================
+
+Decision Variables:
+- x[c][d][p][s][t][r]: Binary variable = 1 if class c, day d, period p, has subject s taught by teacher t in room r
+- y_teacher[t][d][p]: Indicator if teacher t is teaching at day d, period p
+- y_class[c][d][p]: Indicator if class c has a scheduled subject at day d, period p
+- heavy_present[c][d][p]: Indicator if class c has a heavy subject at day d, period p
+
+Objective Function:
+- Minimize the sum of all soft constraint penalties weighted by their respective weights
+- Hard constraints are enforced through model constraints (not penalties)
+
+Solver Configuration:
+- Uses Google OR-Tools Constraint Programming solver
+- Configurable max solving time (default: 120 seconds)
+- Configurable number of workers for parallel solving (default: 16)
+- Optional random seed for reproducibility
+
+
+KEY CONFIGURATION PARAMETERS
+=============================
+
+From competitive_example.json:
+- max_consecutive_periods: 4
+- early_periods: [0, 1]
+- late_periods: [4, 5]
+- days: 5
+- periods_per_day: 6
+- Weights defined for each soft constraint
+
